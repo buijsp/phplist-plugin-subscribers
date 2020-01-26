@@ -113,10 +113,14 @@ return [
             $container->get('phpList\plugin\SubscribersPlugin\Model\History')
         );
     },
-    'report_inactive' => function (ContainerInterface $container) {
+    'phpList\plugin\SubscribersPlugin\Controller\Inactive' => function (ContainerInterface $container) {
         return new Controller\Inactive(
-            $container->get('phpList\plugin\SubscribersPlugin\DAO\Command')
+            $container->get('phpList\plugin\SubscribersPlugin\DAO\Command'),
+            $container->get('phpList\plugin\Common\Context')
         );
+    },
+    'report_inactive' => function (ContainerInterface $container) {
+        return $container->get('phpList\plugin\SubscribersPlugin\Controller\Inactive');
     },
     'report_subscriptions' => function (ContainerInterface $container) {
         return new Controller\Subscriptions(
